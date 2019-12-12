@@ -1,0 +1,16 @@
+[base]
+init_swagger = true
+open_pprof = false
+cache_lua_vm = true
+
+[http]
+host = "0.0.0.0"
+port = "9980"
+
+[db]
+addr = "172.16.24.103:25432"
+user = "postgres"
+password = "123456"
+database = "postgres"
+init = true
+open_listener = true

@@ -1,0 +1,172 @@
+basePath: /
+definitions:
+  controller.Response:
+    properties:
+      code:
+        type: string
+      data:
+        type: object
+      message:
+        type: string
+    type: object
+  controller.RunParams:
+    properties:
+      keyword:
+        type: string
+      params:
+        type: object
+    type: object
+  service.KeywordDto:
+    properties:
+      id:
+        type: string
+      keyword:
+        type: string
+      keyword_type:
+        type: integer
+      script_text:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Server ft.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Svc engine API
+  version: "0.1"
+paths:
+  /api/v1/keyword/created:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: service.KeywordDto
+        in: body
+        name: create
+        required: true
+        schema:
+          $ref: '#/definitions/service.KeywordDto'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Response'
+        "500":
+          description: Internal Error
+          schema:
+            type: string
+      summary: 创建一个新的脚本
+      tags:
+      - Keyword
+  /api/v1/keyword/detail:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Response'
+        "500":
+          description: Internal Error
+          schema:
+            type: string
+      summary: 查询关键字详情
+      tags:
+      - Keyword
+  /api/v1/keyword/page:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: page_size
+        in: query
+        name: page_no
+        type: integer
+      - description: page_size
+        in: query
+        name: page_size
+        type: integer
+      - description: keyword
+        in: query
+        name: keyword
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Response'
+        "500":
+          description: Internal Error
+          schema:
+            type: string
+      summary: 查询列表
+      tags:
+      - Keyword
+  /api/v1/keyword/run:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: controller.RunParams
+        in: body
+        name: create
+        required: true
+        schema:
+          $ref: '#/definitions/controller.RunParams'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Response'
+        "500":
+          description: Internal Error
+          schema:
+            type: string
+      summary: 运行一个脚本
+      tags:
+      - Keyword
+  /api/v1/keyword/updated:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: service.KeywordDto
+        in: body
+        name: create
+        required: true
+        schema:
+          $ref: '#/definitions/service.KeywordDto'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Response'
+        "500":
+          description: Internal Error
+          schema:
+            type: string
+      summary: 修改脚本
+      tags:
+      - Keyword
+swagger: "2.0"
